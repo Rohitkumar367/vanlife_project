@@ -10,8 +10,6 @@ import Layout from './components/Layout'
 const App = () => {
   return (
     <div className='app'>
-      {/* In this project we are going to lear about nested route, as we can see that the other four route is being nested to a single layout route */}
-      
       <Routes>
         <Route element={<Layout/>}>
           <Route path='/' element={<Home/>}/>
