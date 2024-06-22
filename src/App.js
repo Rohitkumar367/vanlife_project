@@ -16,26 +16,32 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* We are gonna add host pages and many more pages*/}
+      {/* We are gonna make our nested path relative so that we don't need mention full path name*/}
 
       <BrowserRouter>
+
         <Routes>
+          <Route path='/' element={<Layout/>}>
 
-          <Route element={<Layout/>}>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/vans' element={<Vans/>}/>
-            <Route path='/host' element={<Hostlayout/>}>
+            {/* index keyword is used to make the route render if no path is chosen  */}
+            <Route index element={<Home/>}/>
 
-              <Route path='/host' element={<Dashboard/>}/>
-              <Route path='/host/income' element={<Income/>}/>
-              <Route path='/host/reviews' element={<Reviews/>}/>
-              
+            {/* If we don't use '/' at the begining then it will treats it as a relative Routes, it will be relative to parent route */}
+            <Route path='about' element={<About/>}/>
+
+            <Route path='vans' element={<Vans/>}/>
+
+            <Route path='vans/:id' element={<VanDetail/>}/>
+
+            <Route path='host' element={<Hostlayout/>}>
+              <Route index element={<Dashboard/>}/>
+              <Route path='income' element={<Income/>}/>
+              <Route path='reviews' element={<Reviews/>}/>
             </Route>
-            <Route path='/vans/:id' element={<VanDetail/>}/>
+            
           </Route>
-
         </Routes>
+
       </BrowserRouter>
       
     </div>

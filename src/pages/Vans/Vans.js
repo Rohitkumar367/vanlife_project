@@ -24,7 +24,7 @@ const Vans = () => {
 
     const vanElements = vans.map((eachVan)=>{
         return (
-            <div key={eachVan.id} className='van-title'>
+            <div key={eachVan.id} className='van-tile'>
                 <Link to={`/vans/${eachVan.id}`}>
                     <img src={eachVan.imageUrl} alt="eachVan" />
                     <div className='Van-info'>
