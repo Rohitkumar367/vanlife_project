@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom'
 // useParams allows you to access the URL parameters of the current route.
 
 const VanDetail = () => {
+    // grabing parameters from the URL
     const params = useParams();
+
     const[vanDetail, setVanDetail] = useState(null);
 
     async function fetchData()
