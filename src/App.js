@@ -23,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Layout/>}>
 
-            {/* index keyword is used to make the route render if no path is chosen  */}
+            {/* index keyword is used to make the route render if no path is choosen or if the path of the parent route matches */}
             <Route index element={<Home/>}/>
 
             {/* If we don't use '/' at the begining then it will treats it as a relative Routes, it will be relative to parent route */}
