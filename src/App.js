@@ -16,17 +16,13 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* We are gonna make our nested path relative so that we don't need mention full path name*/}
-
       <BrowserRouter>
 
         <Routes>
           <Route path='/' element={<Layout/>}>
 
-            {/* index keyword is used to make the route render if no path is choosen or if the path of the parent route matches */}
             <Route index element={<Home/>}/>
 
-            {/* If we don't use '/' at the begining then it will treats it as a relative Routes, it will be relative to parent route */}
             <Route path='about' element={<About/>}/>
 
             <Route path='vans' element={<Vans/>}/>
