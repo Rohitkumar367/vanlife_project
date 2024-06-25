@@ -11,21 +11,25 @@ const Hostlayout = () => {
 
     return (
         <> 
+
+            {/* We just have to remove its parent path as we did in relative path chapter, baki automatically ho jayega because the element assume path of its parent in all of his links*/}
+
             <nav className='host-nav'>
 
-                <NavLink to="/host" end
+                {/* . represent the current path, .. represent previous path(parent path), */}
+                <NavLink to="." end
                     style={({isActive}) => isActive ? inlineStyle : null}
                 >Dashboard</NavLink>
 
-                <NavLink to="/host/income"
+                <NavLink to="income"
                     style={({isActive}) => isActive ? inlineStyle : null}
                 >Income</NavLink>
 
-                <NavLink to="/host/vans"
+                <NavLink to="vans"
                     style={({isActive}) => isActive ? inlineStyle : null}
                 >Vans</NavLink>
 
-                <NavLink to="/host/reviews"
+                <NavLink to="reviews"
                     style={({isActive}) => isActive ? inlineStyle : null}
                 >Reviews</NavLink>
 
