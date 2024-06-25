@@ -19,8 +19,6 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* we are gonna make our path relative in Links also, as we did in section relative Paths in routes */}
-
       <BrowserRouter>
 
         <Routes>

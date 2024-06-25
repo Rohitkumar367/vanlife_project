@@ -32,8 +32,6 @@ const HostVanDetail = () => {
 
     return (
 
-        // So we have use '..' to go to previous path but '..' sends to previous w.r.t route not path, So to avoid making it relative to route, we use relative='path' to make it relative to path so that it will go to previous w.r.t path not route
-
         <section>
             <Link to=".." className="back-button"
                 relative='path'
