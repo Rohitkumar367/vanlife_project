@@ -22,8 +22,6 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* we are gonna nest our hostVansId route*/}
-
       <BrowserRouter>
 
         <Routes>

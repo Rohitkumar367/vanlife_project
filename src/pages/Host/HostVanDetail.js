@@ -10,8 +10,6 @@ const HostVanDetail = () => {
         color: "#161616"
     }
 
-    // but how can we pass the vans info, pricing and its photo to Outlet component as a props, so that the on going component can use it -> 'using useOutletContext'
-
     const params = useParams();
 
     const[currentVan, setCurrentVan] = useState(null);
@@ -74,11 +72,11 @@ const HostVanDetail = () => {
                     <NavLink to='photos'
                         style={({isActive})=> isActive ? inlineStyle : null}
                     >
-                        Photos
+                        Photo
                     </NavLink>
                 </nav>
 
-                <Outlet/>
+                <Outlet context={{currentVan}}/>
 
             </div>
 
