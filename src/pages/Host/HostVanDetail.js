@@ -1,8 +1,16 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, Outlet, NavLink} from 'react-router-dom'
 
 const HostVanDetail = () => {
+
+    const inlineStyle  = {
+        fontWeight: "bold",
+        textDecoration: "underline",
+        color: "#161616"
+    }
+
+    // but how can we pass the vans info, pricing and its photo to Outlet component as a props, so that the on going component can use it -> 'using useOutletContext'
 
     const params = useParams();
 
@@ -31,7 +39,6 @@ const HostVanDetail = () => {
     }
 
     return (
-
         <section>
             <Link to=".." className="back-button"
                 relative='path'
@@ -40,17 +47,41 @@ const HostVanDetail = () => {
             </Link>
 
             <div className='host-van-detail-layout-container'>
-            <div className='host-van-detail'>
-                <img src={currentVan.imageUrl} width={150}/>
-                <div>
-                    <i className={`van-type van-type-${currentVan.type}`}>
-                        {currentVan.type}
-                    </i>
-                    <h2>{currentVan.name}</h2>
-                    <p>${currentVan.price}/day</p>
+                <div className='host-van-detail'>
+                    <img src={currentVan.imageUrl} width={150}/>
+                    <div>
+                        <i className={`van-type van-type-${currentVan.type}`}>
+                            {currentVan.type}
+                        </i>
+                        <h2>{currentVan.name}</h2>
+                        <p className='van-price'>${currentVan.price}/day</p>
+                    </div>
                 </div>
+
+                <nav className='host-van-detail-nav'>
+                    <NavLink to='.' end
+                        style={({isActive})=> isActive ? inlineStyle : null}
+                    >
+                        Details
+                    </NavLink>
+
+                    <NavLink to='pricing'
+                        style={({isActive})=> isActive ? inlineStyle : null}                    
+                    >
+                        Pricing
+                    </NavLink>
+
+                    <NavLink to='photos'
+                        style={({isActive})=> isActive ? inlineStyle : null}
+                    >
+                        Photos
+                    </NavLink>
+                </nav>
+
+                <Outlet/>
+
             </div>
-            </div>
+
         </section>
     )
 }

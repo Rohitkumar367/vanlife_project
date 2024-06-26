@@ -12,7 +12,6 @@ const Hostlayout = () => {
     return (
         <> 
             <nav className='host-nav'>
-            
                 <NavLink to="." end
                     style={({isActive}) => isActive ? inlineStyle : null}
                 >Dashboard</NavLink>
