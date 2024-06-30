@@ -45,6 +45,7 @@ const HostVanDetail = () => {
             </Link>
 
             <div className='host-van-detail-layout-container'>
+            
                 <div className='host-van-detail'>
                     <img src={currentVan.imageUrl} width={150}/>
                     <div>
@@ -76,6 +77,7 @@ const HostVanDetail = () => {
                     </NavLink>
                 </nav>
 
+                {/* Passing value to our Outlet, and will be recievable inside the rendered component using 'useOutletContext' hook */}
                 <Outlet context={{currentVan}}/>
 
             </div>

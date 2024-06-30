@@ -1,7 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const Vans = () => {
+
+    // using useSearchParams to access the query parameters of url.
+    const[searchParams, setSearchParams] = useSearchParams();
+    const typeFilter = searchParams.get("type");
+    console.log(typeFilter);
 
     const[vans, setVans] = useState([]);
 
