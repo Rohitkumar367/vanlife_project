@@ -5,10 +5,15 @@ const Vans = () => {
 
     // using useSearchParams to access the query parameters of url.
     const[searchParams, setSearchParams] = useSearchParams();
-    const typeFilter = searchParams.get("type");
-    console.log(typeFilter);
-
     const[vans, setVans] = useState([]);
+
+    const typeFilter = searchParams.get("type");
+
+    // applying filter on based on type of van
+    const displayedVans = typeFilter
+     ? vans.filter(van => van.type.toLowerCase() === typeFilter)
+     : vans;
+
 
     async function fetchData()
     {
@@ -27,7 +32,12 @@ const Vans = () => {
         fetchData();
     },[])
 
-    const vanElements = vans.map((eachVan)=>{
+
+    if(!vans){
+        return <h1>Loading...</h1>
+    }
+
+    const vanElements = displayedVans.map((eachVan)=>{
         return (
             <div key={eachVan.id} className='van-tile'>
                 <Link to={`/vans/${eachVan.id}`}>
@@ -46,7 +56,15 @@ const Vans = () => {
         <div className='van-list-container'>
             <h1>Explore our van options</h1>
             <div className='van-list'>
-                {vanElements}
+                {
+                    vans.length > 0 ? 
+                    (
+                        vanElements
+                    ) :
+                    (
+                        <h1>Loading...</h1>
+                    )
+                }
             </div>
         </div>
     )
