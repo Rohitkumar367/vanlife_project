@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* we are gonna use Links to add Search params*/}
+      {/* In this section we are gonna use useSearchParams in to filter type*/}
 
       <BrowserRouter>
 
