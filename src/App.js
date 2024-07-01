@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* we are gonna use useSearchParams to make our filteration, on type of the car.*/}
+      {/* we are gonna use Links to add Search params*/}
 
       <BrowserRouter>
 

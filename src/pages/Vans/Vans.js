@@ -3,13 +3,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 const Vans = () => {
 
-    // using useSearchParams to access the query parameters of url.
     const[searchParams, setSearchParams] = useSearchParams();
     const[vans, setVans] = useState([]);
 
     const typeFilter = searchParams.get("type");
 
-    // applying filter on based on type of van
     const displayedVans = typeFilter
      ? vans.filter(van => van.type.toLowerCase() === typeFilter)
      : vans;
@@ -55,6 +53,20 @@ const Vans = () => {
     return (
         <div className='van-list-container'>
             <h1>Explore our van options</h1>
+            <div className='van-list-filter-buttons'>
+                <Link to="?type=simple"
+                    className='van-type simple'
+                >Simple</Link>
+                <Link to="?type=rugged"
+                    className='van-type rugged'
+                >Rugged</Link>
+                <Link to="?type=luxury"
+                    className='van-type luxury'
+                >Luxury</Link>
+                <Link to="."
+                    className='van-type clear-filters'
+                >Clear Filter</Link>
+            </div>
             <div className='van-list'>
                 {
                     vans.length > 0 ? 
