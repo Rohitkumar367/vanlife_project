@@ -22,7 +22,9 @@ const HostVans = () => {
 
     const hostVanEls = vans.map((eachVan) => {
         return (
-            <Link to={`/host/vans/${eachVan.id}`} key={eachVan.id}
+            <Link 
+                to={eachVan.id} 
+                key={eachVan.id}
                 className="host-van-link-wrapper"
             >
                 <div className='host-van-single' key={eachVan.id}>

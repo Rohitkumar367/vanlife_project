@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* In this section we are gonna use useSearchParams in to filter type*/}
+      {/* In this section we are gonna merge the old query paramter with the new one*/}
 
       <BrowserRouter>
 

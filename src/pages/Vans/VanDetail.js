@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 
 const VanDetail = () => {
@@ -28,6 +28,13 @@ const VanDetail = () => {
 
     return (
         <div className='van-detail-container'>
+            <Link to=".." 
+                relative='path'
+                className="back-button"
+            >
+                &larr; <span>Back to all vans</span>
+            </Link>
+
             { vanDetail ? (
                 <div className='van-detail'>
                     <img src={vanDetail.imageUrl} alt="vanDetail" />
