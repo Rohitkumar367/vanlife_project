@@ -38,7 +38,14 @@ const Vans = () => {
     const vanElements = displayedVans.map((eachVan)=>{
         return (
             <div key={eachVan.id} className='van-tile'>
-                <Link to={eachVan.id}>
+                {/* We are gonna pass current state to our link */}
+                <Link 
+                 to={eachVan.id} 
+                 state={{
+                    search: `?${searchParams.toString()}`,
+                    type: typeFilter
+                }}
+                >
                     <img src={eachVan.imageUrl} alt="eachVan" />
                     <div className='Van-info'>
                         <h3>{eachVan.name}</h3>

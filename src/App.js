@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className='app'>
 
-      {/* In this section we are gonna merge the old query paramter with the new one*/}
+      {/* previusly when we were going back from vanDetail to vans page, it was removing out the filter. So we are gonna fix this*/}
 
       <BrowserRouter>
 

@@ -1,10 +1,14 @@
 import {React, useState, useEffect} from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
+
+// we are gonna use 'useLocation' hook to gather all the data of current URL, including 'pathname', 'search' and 'hash' properties. 
+// useLocation provides the full location object, allowing you to access the current pathname, query string (search), and fragment (hash).
 
 
 const VanDetail = () => {
 
     const params = useParams();
+    const location = useLocation();
 
     const[vanDetail, setVanDetail] = useState(null);
 
@@ -25,14 +29,18 @@ const VanDetail = () => {
         fetchData();
     },[params.id])
 
+    // yahi p check ker le rhe h, ki location.state exist kerta h ya nhi
+    const search = location.state?.search || "";
+    const type = location.state?.type || "all";
+
 
     return (
         <div className='van-detail-container'>
-            <Link to=".." 
+            <Link to={`..${search}`} 
                 relative='path'
                 className="back-button"
             >
-                &larr; <span>Back to all vans</span>
+                &larr; <span>Back to {type} vans</span>
             </Link>
 
             { vanDetail ? (
