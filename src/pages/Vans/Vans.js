@@ -38,9 +38,10 @@ const Vans = () => {
     const vanElements = displayedVans.map((eachVan)=>{
         return (
             <div key={eachVan.id} className='van-tile'>
-                {/* We are gonna pass current state to our link */}
                 <Link 
+                 // made path relative
                  to={eachVan.id} 
+                 // we are gonna pass current state to our link
                  state={{
                     search: `?${searchParams.toString()}`,
                     type: typeFilter

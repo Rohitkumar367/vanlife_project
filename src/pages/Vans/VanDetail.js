@@ -8,7 +8,7 @@ import { useParams, Link, useLocation } from 'react-router-dom'
 const VanDetail = () => {
 
     const params = useParams();
-    const location = useLocation();
+    const location = useLocation();//-> useLocation hook
 
     const[vanDetail, setVanDetail] = useState(null);
 
@@ -30,7 +30,8 @@ const VanDetail = () => {
     },[params.id])
 
     // yahi p check ker le rhe h, ki location.state exist kerta h ya nhi
-    const search = location.state?.search || "";
+    const search = location.state && (location.state.search || "");
+
     const type = location.state?.type || "all";
 
 

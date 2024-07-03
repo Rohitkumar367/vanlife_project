@@ -16,25 +16,22 @@ import HostVanDetail from './pages/Host/HostVanDetail'
 import HostVanInfo from './pages/Host/HostVanInfo'
 import HostVanPricing from './pages/Host/HostVanPricing'
 import HostVanPhotos from './pages/Host/HostVanPhotos' 
+import NotFound from './pages/NotFound'
 
 
 const App = () => {
   return (
     <div className='app'>
 
-      {/* previusly when we were going back from vanDetail to vans page, it was removing out the filter. So we are gonna fix this*/}
+      {/* In this section we are gonna add '404 Not Found Page', if user specify an unspecified path*/}
 
       <BrowserRouter>
 
         <Routes>
           <Route path='/' element={<Layout/>}>
-
             <Route index element={<Home/>}/>
-
             <Route path='about' element={<About/>}/>
-
             <Route path='vans' element={<Vans/>}/>
-
             <Route path='vans/:id' element={<VanDetail/>}/>
 
             <Route path='host' element={<Hostlayout/>}>
@@ -50,6 +47,9 @@ const App = () => {
 
               <Route path='reviews' element={<Reviews/>}/>
             </Route>
+
+            {/* Added page not found path, '*' represents unwanted path */}
+            <Route path="*" element={<NotFound/>}/>
             
           </Route>
         </Routes>

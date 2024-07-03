@@ -23,6 +23,7 @@ const HostVans = () => {
     const hostVanEls = vans.map((eachVan) => {
         return (
             <Link 
+                // made path relative
                 to={eachVan.id} 
                 key={eachVan.id}
                 className="host-van-link-wrapper"
