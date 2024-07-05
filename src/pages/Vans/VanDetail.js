@@ -1,35 +1,18 @@
-import {React, useState, useEffect} from 'react'
-import { useParams, Link, useLocation } from 'react-router-dom'
+import {React} from 'react'
+import {Link, useLocation, useLoaderData } from 'react-router-dom'
 
-// we are gonna use 'useLocation' hook to gather all the data of current URL, including 'pathname', 'search' and 'hash' properties. 
-// useLocation provides the full location object, allowing you to access the current pathname, query string (search), and fragment (hash).
-
+export async function loader({params}){
+    let res = await fetch(`/api/vans/${params.id}`);
+    let output = await res.json();
+    return output.vans
+}
 
 const VanDetail = () => {
 
-    const params = useParams();
-    const location = useLocation();//-> useLocation hook
+    const location = useLocation();
 
-    const[vanDetail, setVanDetail] = useState(null);
+    const vanDetail = useLoaderData();
 
-    async function fetchData()
-    {
-        try{
-            let res = await fetch(`/api/vans/${params.id}`);
-            let output = await res.json();
-            setVanDetail(output.vans);
-        }
-        catch(err)
-        {
-            window.alert("OOPs, something went wrong!");
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    },[params.id])
-
-    // yahi p check ker le rhe h, ki location.state exist kerta h ya nhi
     const search = location.state && (location.state.search || "");
 
     const type = location.state?.type || "all";

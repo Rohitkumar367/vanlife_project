@@ -1,24 +1,16 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react'
+import {Link, useLoaderData} from 'react-router-dom'
+
+export async function loader(){
+    let res = await fetch('/api/host/vans');
+    let output = await res.json();
+
+    return output.vans;
+}
 
 const HostVans = () => {
 
-    const[vans, setVans] = useState([]);
-
-    async function fetchData(){
-        try{
-            let resp = await fetch("/api/host/vans");
-            let output = await resp.json();
-            setVans(output.vans);
-        }
-        catch(err){
-            window.alert('OOPs!, somethind went wrong');
-        }
-    }
-
-    useEffect(()=>{
-        fetchData();
-    },[])
+    const vans = useLoaderData();
 
     const hostVanEls = vans.map((eachVan) => {
         return (
@@ -43,17 +35,7 @@ const HostVans = () => {
         <section>
             <h1 className='host-vans-title'>Your listed vans</h1>
             <div className='host-vans-list'>
-                {
-                    vans.length > 0 ? 
-                    (
-                        <section>
-                            {hostVanEls}
-                        </section>
-                    ) : 
-                    (
-                        <h2>Loading...</h2>
-                    )
-                }
+                {hostVanEls}
             </div>
         </section>
     )

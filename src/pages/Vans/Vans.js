@@ -1,10 +1,17 @@
-import React, {useEffect, useState} from 'react'
-import { Link, useSearchParams } from 'react-router-dom';
+import React from 'react'
+import { Link, useSearchParams, useLoaderData } from 'react-router-dom';
+
+export async function loader(){
+    let res = await fetch("/api/vans");
+    let output = await res.json();
+    return output.vans
+}
 
 const Vans = () => {
 
     const[searchParams, setSearchParams] = useSearchParams();
-    const[vans, setVans] = useState([]);
+
+    const vans = useLoaderData();
 
     const typeFilter = searchParams.get("type");
 
@@ -12,36 +19,11 @@ const Vans = () => {
      ? vans.filter(van => van.type.toLowerCase() === typeFilter)
      : vans;
 
-
-    async function fetchData()
-    {
-        try{
-            let res = await fetch("/api/vans");
-            let output = await res.json();
-            setVans(output.vans);
-        }
-        catch(err)
-        {
-            window.alert("OOPs, something went wrong!");
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    },[])
-
-
-    if(!vans){
-        return <h1>Loading...</h1>
-    }
-
     const vanElements = displayedVans.map((eachVan)=>{
         return (
             <div key={eachVan.id} className='van-tile'>
                 <Link 
-                 // made path relative
                  to={eachVan.id} 
-                 // we are gonna pass current state to our link
                  state={{
                     search: `?${searchParams.toString()}`,
                     type: typeFilter
@@ -98,15 +80,7 @@ const Vans = () => {
             </div>
 
             <div className='van-list'>
-                {
-                    vans.length > 0 ? 
-                    (
-                        vanElements
-                    ) :
-                    (
-                        <h1>Loading...</h1>
-                    )
-                }
+                {vanElements}
             </div>
         </div>
     )

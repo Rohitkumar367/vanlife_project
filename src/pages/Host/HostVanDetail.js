@@ -1,6 +1,14 @@
 import React from 'react'
-import {useEffect, useState} from 'react'
-import {useParams, Link, Outlet, NavLink} from 'react-router-dom'
+import {Link, Outlet, NavLink, useLoaderData} from 'react-router-dom'
+
+
+export async function loader({params}){
+    let res = await fetch(`/api/host/vans/${params.id}`);
+    let output = await res.json();
+
+    return output.vans
+}
+
 
 const HostVanDetail = () => {
 
@@ -10,31 +18,7 @@ const HostVanDetail = () => {
         color: "#161616"
     }
 
-    const params = useParams();
-
-    const[currentVan, setCurrentVan] = useState(null);
-
-    async function fetchData()
-    {
-        try{
-            let res = await fetch(`/api/host/vans/${params.id}`);
-            let output = await res.json();
-            setCurrentVan(output.vans);
-        }
-        catch(err)
-        {
-            window.alert("OOPs, something went wrong!");
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    },[])
-
-
-    if(!currentVan){
-        return <h1>Loading...</h1>
-    }
+    const currentVan = useLoaderData();
 
     return (
         <section>
@@ -78,7 +62,6 @@ const HostVanDetail = () => {
                     </NavLink>
                 </nav>
 
-                {/* Passing value to our Outlet, and will be recievable inside the rendered component using 'useOutletContext' hook */}
                 <Outlet context={{currentVan}}/>
 
             </div>
