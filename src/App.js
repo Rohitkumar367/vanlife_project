@@ -18,6 +18,9 @@ import HostVanPricing from './pages/Host/HostVanPricing'
 import HostVanPhotos from './pages/Host/HostVanPhotos' 
 import NotFound from './pages/NotFound'
 import Error from './components/Error'
+import Login from './pages/Login'
+
+// we are make a login page so that the host section stay private
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>}>
@@ -26,11 +29,17 @@ const router = createBrowserRouter(createRoutesFromElements(
 
     <Route path='about' element={<About/>}/>
 
+    {/* Login Route */}
+    <Route
+      path='login'
+      element={<Login/>}
+    />
+
     <Route 
       path='vans' 
       element={<Vans/>} 
       loader={vansLoader} 
-      errorElement={<Error/>}
+      errorElement={<Error/>} 
     />
 
     <Route 
