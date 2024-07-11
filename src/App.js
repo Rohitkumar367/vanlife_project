@@ -20,7 +20,10 @@ import NotFound from './pages/NotFound'
 import Error from './components/Error'
 import Login from './pages/Login'
 
-// we are make a login page so that the host section stay private
+// imported requreAuth function from utils.js to check user is loged in or not
+import { requireAuth } from './utils'
+
+// we are gonna protect our private route, by using loader function in each child route of hostRoute
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>}>
@@ -30,10 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='about' element={<About/>}/>
 
     {/* Login Route */}
-    <Route
-      path='login'
-      element={<Login/>}
-    />
+    <Route path='login' element={<Login/>}/>
 
     <Route 
       path='vans' 
@@ -51,27 +51,65 @@ const router = createBrowserRouter(createRoutesFromElements(
 
     {/* Host section starts */}
     <Route path='host' element={<Hostlayout/>}>
-      <Route index element={<Dashboard/>}/>
-      <Route path='income' element={<Income/>}/>
+      <Route 
+        index 
+        element={<Dashboard/>}
+        loader={ async () => {
+          return await requireAuth()
+      }}
+      />
+      <Route 
+        path='income' 
+        element={<Income/>}
+        loader={async () => {
+          return await requireAuth()
+        }}
+      />
+
+      <Route 
+        path='reviews' 
+        element={<Reviews/>}
+        loader={async () => {
+          return await requireAuth()
+        }} 
+      />
+
       <Route 
         path='vans' 
         element={<HostVans/>}
         loader={hostVansLoader}
         errorElement={<Error/>}
       />
-
       <Route 
         path='vans/:id' 
         element={<HostVanDetail/>}
         loader={hostVanDetailLoader}
         errorElement={<Error/>}
       >
-        <Route index element={<HostVanInfo/>}/>
-        <Route path='pricing' element={<HostVanPricing/>}/>
-        <Route path='photos' element={<HostVanPhotos/>}/>
+        <Route 
+          index 
+          element={<HostVanInfo/>}
+          loader={async () => {
+            return await requireAuth()
+        }}
+        />
+        <Route 
+          path='pricing' 
+          element={<HostVanPricing/>}
+          loader={async () => {
+            return await requireAuth()
+        }}
+        />
+        <Route 
+          path='photos' 
+          element={<HostVanPhotos/>}
+          loader={async () => {
+            return await requireAuth()
+        }}
+
+        />
       </Route>
 
-      <Route path='reviews' element={<Reviews/>}/>
     </Route>
     {/* Host section ends */}
 
@@ -83,8 +121,6 @@ const router = createBrowserRouter(createRoutesFromElements(
 const App = () => {
   return (
     <div className='app'>
-
-      {/* In this section we are gonna use loader function instead of useEffect in every fetching components*/}
 
       <RouterProvider router={router}/>
       

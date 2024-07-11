@@ -10,11 +10,9 @@ export async function loader({params}){
 const VanDetail = () => {
 
     const location = useLocation();
-
     const vanDetail = useLoaderData();
 
     const search = location.state && (location.state.search || "");
-
     const type = location.state?.type || "all";
 
 

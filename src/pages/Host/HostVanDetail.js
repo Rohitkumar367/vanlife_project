@@ -1,11 +1,14 @@
 import React from 'react'
 import {Link, Outlet, NavLink, useLoaderData} from 'react-router-dom'
+import { requireAuth } from '../../utils';
 
 
 export async function loader({params}){
     let res = await fetch(`/api/host/vans/${params.id}`);
     let output = await res.json();
 
+    await requireAuth();
+    
     return output.vans
 }
 

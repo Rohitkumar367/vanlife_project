@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link, useLoaderData} from 'react-router-dom'
+import { requireAuth } from '../../utils';
 
 export async function loader(){
     let res = await fetch('/api/host/vans');
     let output = await res.json();
 
+    await requireAuth();
+    
     return output.vans;
 }
 
@@ -15,7 +18,6 @@ const HostVans = () => {
     const hostVanEls = vans.map((eachVan) => {
         return (
             <Link 
-                // made path relative
                 to={eachVan.id} 
                 key={eachVan.id}
                 className="host-van-link-wrapper"

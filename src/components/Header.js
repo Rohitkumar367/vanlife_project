@@ -1,4 +1,5 @@
 import React from 'react'
+import avatarIcon from '../images/avatar-icon.png'
 import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
@@ -20,6 +21,15 @@ const Header = () => {
           <NavLink to="vans"
             className={({isActive}) => isActive ? "active-link" : null}
           >Vans</NavLink>
+
+          <Link to="login" className='login-link'>
+            <img 
+              src={avatarIcon} 
+              alt="login_image" 
+              className='login-icon'
+            />
+          </Link>
+
         </nav>
 
       </header>
